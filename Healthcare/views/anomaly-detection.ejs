@@ -1,0 +1,65 @@
+<%- include('partials/navbar') %> <!-- Include Navbar -->
+
+<div class="container mt-4">
+    <h2 class="text-center">🚨 Anomaly and Risk Detection</h2>
+
+    <!-- ✅ Fraud Transactions Table (Only Show If fraudCases Exists) -->
+    <% if (fraudCases) { %>
+        <h3>💰 Fraudulent Billing Transactions</h3><br/>
+        <h3 style="color: red;">🚨 Fraud Billing Transactions Found:<%= fraudCases.length %> </h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Medical Condition</th>
+                    <th>Billing Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (fraudCases.length === 0) { %>
+                    <tr><td colspan="4" class="text-center">No fraudulent transactions detected</td></tr>
+                <% } else { %>
+                    <% fraudCases.forEach(record => { %>
+                        <tr>
+                            <td><%= record.Name || "Unknown" %></td>
+                            <td><%= record["MedicalCondition"] || "Unknown" %></td>
+                            <td>Rs.<%= record["BillingAmount"] ? record["BillingAmount"].toFixed(2) : "N/A" %></td>
+                            <td><span class="badge bg-danger">Fraud Detected</span></td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <!-- ✅ High-Risk Patients Table (Only Show If highRiskPatients Exists) -->
+    <% if (highRiskPatients) { %>
+        <h3>⚠ High-Risk Patients</h3><br/>
+        <h3 style="color: red;"> ⚠ High-Risk Patients Found:<%= highRiskPatients.length %></h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Medical Condition</th>
+                    <th>Test Results</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (highRiskPatients.length === 0) { %>
+                    <tr><td colspan="3" class="text-center">No high-risk patients detected</td></tr>
+                <% } else { %>
+                    <% highRiskPatients.forEach(record => { %>
+                        <tr>
+                            <td><%= record.Name || "Unknown" %></td>
+                            <td><%= record["MedicalCondition"] || "Unknown" %></td>
+                            <td><%= record["TestResults"] || "N/A" %></td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    <% } %>
+
+   
+</div>

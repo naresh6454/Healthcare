@@ -1,0 +1,47 @@
+/* General styles for the navigation */
+.risk-nav {
+    background-color: #2c3e50; /* Dark background color */
+    padding: 10px 0; /* Spacing around the nav */
+    border-radius: 8px; /* Rounded corners */
+    max-width: 400px; /* Max width for the nav */
+    margin: 20px auto; /* Center the nav horizontally */
+  }
+  
+  /* Style for the unordered list */
+  .risk-nav ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Style for each list item */
+  .risk-nav ul li {
+    text-align: center; /* Center the list items */
+    margin: 10px 0; /* Vertical spacing between items */
+  }
+  
+  /* Style for each link */
+  .risk-nav ul li a {
+    text-decoration: none; /* Remove underline */
+    color: #ecf0f1; /* Light text color */
+    font-size: 18px; /* Font size */
+    font-weight: bold; /* Bold text */
+    display: block; /* Make the link a block element for easy padding */
+    padding: 12px 20px; /* Spacing inside the links */
+    border-radius: 5px; /* Rounded corners on links */
+    transition: background-color 0.3s ease; /* Smooth background change */
+  }
+  
+  /* Hover effect for links */
+  .risk-nav ul li a:hover {
+    background-color: #3498db; /* Change background on hover */
+    color: #fff; /* Change text color on hover */
+  }
+  
+  /* Responsive styles for mobile */
+  @media (max-width: 600px) {
+    .risk-nav {
+      max-width: 100%; /* Full width on small screens */
+    }
+  }
+  

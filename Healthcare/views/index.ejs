@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBM ML Scoring</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <h2>IBM Machine Learning - Patient Risk Prediction</h2>
+
+    <!-- Patient Data Form -->
+    <form id="scoringForm">
+        <label>Name: <input type="text" name="Name" required></label>
+        <label>Age: <input type="number" name="Age" required></label>
+        <label>Gender: 
+            <select name="Gender">
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+        </label>
+        <label>Blood Type: <input type="text" name="BloodType" required></label>
+        <label>Medical Condition: <input type="text" name="MedicalCondition" required></label>
+        <label>Date of Admission: <input type="date" name="DateofAdmission" required></label>
+        <label>Doctor: <input type="text" name="Doctor" required></label>
+        <label>Hospital: <input type="text" name="Hospital" required></label>
+        <label>Insurance Provider: <input type="text" name="InsuranceProvider" required></label>
+        <label>Billing Amount: <input type="number" name="BillingAmount" step="0.000001" required></label>
+        <label>Room Number: <input type="number" name="RoomNumber" required></label>
+        <label>Admission Type: <input type="text" name="AdmissionType" required></label>
+        <label>Discharge Date: <input type="date" name="DischargeDate" required></label>
+        <label>Medication: <input type="text" name="Medication" required></label>
+        
+        <button type="submit">Get Prediction</button>
+    </form>
+
+    <!-- Prediction Results Table -->
+    <h3>Prediction Results</h3>
+    <table id="resultsTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Condition</th>
+                <th>Risk Score</th>
+                <th>Prediction</th>
+            </tr>
+        </thead>
+        <tbody id="resultsBody"></tbody> <!-- Updated to ensure dynamic content update -->
+    </table>
+
+    <!-- Chart for Visualization -->
+    <canvas id="predictionChart"></canvas>
+
+    <script src="/js/ibm_scoring.js"></script>
+
+</body>
+</html>

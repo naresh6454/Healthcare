@@ -1,0 +1,14 @@
+if (Age <= 69.5) and (RoomNumber > 14.5) and (BillingAmount > 4958.93) then class: 5 (proba: 17.06%) | based on 22,463 samples
+
+if (Age > 69.5) and (BillingAmount <= 51873.609) and (BillingAmount > 2599.79) then class: 4 (proba: 17.2%) | based on 7,583 samples
+
+if (Age <= 69.5) and (RoomNumber > 14.5) and (BillingAmount <= 4958.93) then class: 1 (proba: 18.6%) | based on 2,016 samples
+
+if (Age <= 69.5) and (RoomNumber <= 14.5) and (BillingAmount > 20151.04) then class: 2 (proba: 18.38%) | based on 593 samples
+
+if (Age <= 69.5) and (RoomNumber <= 14.5) and (BillingAmount <= 20151.04) then class: 0 (proba: 26.21%) | based on 393 samples
+
+if (Age > 69.5) and (BillingAmount <= 51873.609) and (BillingAmount <= 2599.79) then class: 4 (proba: 26.61%) | based on 248 samples
+
+if (Age > 69.5) and (BillingAmount > 51873.609) then class: 2 (proba: 100.0%) | based on 4 samples
+

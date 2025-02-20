@@ -1,0 +1,134 @@
+<%- include('partials/navbar') %> <!-- Include Navbar -->
+<div class="container mt-4">
+    <h2 class="text-center">Healthcare Data Visualizations</h2>
+
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-6">
+            <h3 class="mt-4 text-center">🩺 Patients by Medical Condition</h3>
+            <canvas id="patientChart" style="max-height:300px ; " ></canvas>
+
+            <h3 class="mt-4 text-center">💰 Billing Amount Distribution</h3>
+            <canvas id="billingChart" style="max-height:300px ; "></canvas>
+
+           
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-md-6">
+            <h3 class="mt-4 text-center">Gender Distribution</h3>
+            <canvas id="genderChart"  style="max-height:300px ; "></canvas>
+
+            <h3 class="mt-4 text-center">📅 Test Result Chart</h3>
+            <canvas id="testResultsChart"style="max-height:300px ; "></canvas>
+           
+        </div>
+    </div>
+</div>
+<!-- ✅ Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    async function loadPatientStats() {
+        const response = await fetch('/api/patient-stats');
+        const data = await response.json();
+
+        const labels = data.map(entry => entry._id);
+        const counts = data.map(entry => entry.count);
+
+        new Chart(document.getElementById('patientChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Patients',
+                    data: counts,
+                    backgroundColor: 'blue'
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    }
+    async function loadGenderStats() {
+        const response = await fetch('/api/gender-stats');
+        const data = await response.json();
+
+        const labels = data.map(entry => entry._id);
+        const counts = data.map(entry => entry.count);
+
+        new Chart(document.getElementById('genderChart'), {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: counts,
+                    backgroundColor: ['blue', 'pink']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    }
+    async function loadTestResults() {
+        const response = await fetch('/api/test-results');
+        const data = await response.json();
+
+        const labels = data.map(entry => entry._id);
+        const counts = data.map(entry => entry.count);
+
+        new Chart(document.getElementById('testResultsChart'), {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: counts,
+                    backgroundColor: ['green', 'red', 'yellow']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    }
+    async function loadBillingStats() {
+        const response = await fetch('/api/billing-stats'); // You need to create this API
+        const data = await response.json();
+
+        new Chart(document.getElementById('billingChart'), {
+            type: 'bar',
+            data: {
+                labels: ["Low", "Medium", "High"],
+                datasets: [{
+                    label: 'Billing Amount Distribution',
+                    data: data,
+                    backgroundColor: ['green', 'orange', 'red']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    }
+    async function loadBloodGroupStats() {
+    const response = await fetch('/api/blood-group-stats');
+    const data = await response.json();
+    const labels = data.map(entry => entry._id);
+    const counts = data.map(entry => entry.count);
+
+    new Chart(document.getElementById("bloodGroupChart"), {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Number of Patients',
+                data: counts,
+                backgroundColor: ['red', 'blue', 'green', 'purple', 'orange', 'pink']
+            }]
+        },
+        options: { responsive: true }
+    });
+}
+    // ✅ Load all charts when page loads
+    document.addEventListener("DOMContentLoaded", function () {
+        loadPatientStats();
+        loadGenderStats();
+        loadTestResults();
+        loadBillingStats();
+        loadBloodGroupStats()
+    });
+</script>
